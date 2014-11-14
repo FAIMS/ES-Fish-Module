@@ -7,12 +7,10 @@
 }
 
 .list{    
-    margin-left:5%;
-    width:80%;
+
 }
 
 .list-label{
-    margin-left:5%;
     margin-top:7%;
 }
 
@@ -20,10 +18,9 @@
     background-color: #33b5e5;
     border-color: #26a0cd;
     color: white;
-    margin-left:3%;
     margin-top:2%;
     margin-bottom:2%;
-    width:77%;
+
     border-width:1%;
     border-radius:5%;
     
@@ -33,10 +30,9 @@
     background-color: #d9534f;
     border-color: #be3e3a;
     color: white;
-    margin-left:3%;
     margin-top:2%;
     margin-bottom:2%;
-    width:77%;
+
     border-width:1%;
     border-radius:5%;
 }
@@ -45,10 +41,9 @@
     background-color: #45b845;
     border-color: #38a538;
     color: white;
-    margin-left:3%;
     margin-top:2%;
     margin-bottom:2%;
-    width:77%;
+
     border-width:1%;
     border-radius:5%;
 }
