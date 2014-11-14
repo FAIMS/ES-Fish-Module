@@ -1,0 +1,204 @@
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Environmental Solutions Fish Module</h:title>
+    <model>
+      <instance>
+        <faims>
+          <style>
+            <orientation>
+              <orientation/>
+            </orientation>
+            <even>
+              <layout_weight/>
+            </even>
+            <large>
+              <layout_weight/>
+            </large>
+          </style>
+          <user>
+            <usertab>
+              <users/>
+              <login/>
+            </usertab>
+          </user>
+          <Control>
+            <Fish>
+              <New_Fish/>
+              <Fish_List/>
+            </Fish>
+          </Control>
+          <Fish>
+            <Fish>
+              <Username/>
+              <Time/>
+              <Photos/>
+              <Attach_Photo/>
+              <container1>
+                <child1>
+                  <Latitude/>
+                </child1>
+                <child2>
+                  <Longitude/>
+                </child2>
+              </container1>
+              <Fill_In_GPS/>
+              <Size/>
+              <Sex/>
+              <Location/>
+              <Depth/>
+              <Weather_Conditions/>
+              <Fishing_Methods/>
+              <Number_of_Fishers/>
+              <Comments/>
+              <Released/>
+              <Tag_No/>
+            </Fish>
+          </Fish>
+        </faims>
+      </instance>
+      <bind nodeset="/faims/Fish/Fish/container1/child1/Latitude" type="decimal"/>
+      <bind nodeset="/faims/Fish/Fish/container1/child2/Longitude" type="decimal"/>
+      <bind nodeset="/faims/Fish/Fish/Size" type="decimal"/>
+      <bind nodeset="/faims/Fish/Fish/Depth" type="decimal"/>
+      <bind nodeset="/faims/Fish/Fish/Number_of_Fishers" type="decimal"/>
+    </model>
+  </h:head>
+  <h:body>
+    <group ref="style">
+      <label/>
+      <group ref="orientation">
+        <label/>
+        <input ref="orientation">
+          <label>horizontal</label>
+        </input>
+      </group>
+      <group ref="even">
+        <label/>
+        <input ref="layout_weight">
+          <label>1</label>
+        </input>
+      </group>
+      <group ref="large">
+        <label/>
+        <input ref="layout_weight">
+          <label>3</label>
+        </input>
+      </group>
+    </group>
+    <group ref="user">
+      <label>{User_List}</label>
+      <group ref="usertab">
+        <label>{User_List}</label>
+        <select1 appearance="compact" ref="users" faims_style_class="user_list">
+          <label>{Users}:</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+      </group>
+    </group>
+    <group ref="Control">
+      <label>{Control}</label>
+      <group ref="Fish">
+        <label>{Fish}</label>
+        <trigger ref="New_Fish" faims_style_class="faims-blue">
+          <label>{New_Fish}</label>
+        </trigger>
+        <select1 appearance="compact" ref="Fish_List" faims_certainty="false" faims_annotation="false" faims_read_only="false" faims_style_class="fish_list">
+          <label>{Fish_List}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+      </group>
+    </group>
+    <group ref="Fish" faims_archent_type="Fish">
+      <label>{Fish}</label>
+      <group ref="Fish">
+        <label>{Fish}</label>
+        <input ref="Username" faims_attribute_name="Username" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_read_only="true">
+          <label>{Username}</label>
+        </input>
+        <input ref="Time" faims_attribute_name="Time" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_read_only="true">
+          <label>{Time}</label>
+        </input>
+        <select type="camera" faims_sync="true" ref="Photos" faims_attribute_name="Photos" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+          <label>{Photos}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select>
+        <trigger ref="Attach_Photo" faims_style_class="faims-blue">
+          <label>{Attach_Photo}</label>
+        </trigger>
+        <group ref="container1" faims_style="orientation">
+          <label/>
+          <group ref="child1" faims_style="even">
+            <label/>
+            <input ref="Latitude" faims_attribute_name="Latitude" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+              <label>{Latitude}</label>
+            </input>
+          </group>
+          <group ref="child2" faims_style="even">
+            <label/>
+            <input ref="Longitude" faims_attribute_name="Longitude" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+              <label>{Longitude}</label>
+            </input>
+          </group>
+        </group>
+        <trigger ref="Fill_In_GPS" faims_style_class="faims-blue">
+          <label>{Fill_In_GPS}</label>
+        </trigger>
+        <input ref="Size" faims_attribute_name="Size" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+          <label>{Size}</label>
+        </input>
+        <select1 appearance="full" ref="Sex" faims_attribute_name="Sex" faims_attribute_type="vocab" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+          <label>{Sex}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <input ref="Location" faims_attribute_name="Location" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+          <label>{Location}</label>
+        </input>
+        <input ref="Depth" faims_attribute_name="Depth" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+          <label>{Depth}</label>
+        </input>
+        <select ref="Weather_Conditions" faims_attribute_name="Weather Conditions" faims_attribute_type="vocab" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+          <label>{Weather_Conditions}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select>
+        <select1 ref="Fishing_Methods" faims_attribute_name="Fishing Method" faims_attribute_type="vocab" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+          <label>{Fishing_Methods}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <input ref="Number_of_Fishers" faims_attribute_name="Number of Fishers in Party" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+          <label>{Number_of_Fishers}</label>
+        </input>
+        <input ref="Comments" faims_attribute_name="Comments" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+          <label>{Comments}</label>
+        </input>
+        <select1 appearance="full" ref="Released" faims_attribute_name="Released?" faims_attribute_type="vocab" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+          <label>{Released}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <input ref="Tag_No" faims_attribute_name="Tag no" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+          <label>{Tag_No}</label>
+        </input>
+      </group>
+    </group>
+  </h:body>
+</h:html>

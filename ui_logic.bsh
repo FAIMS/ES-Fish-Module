@@ -1,0 +1,316 @@
+/*** 'Editable' - you can edit the code below based on the needs ***/
+import java.util.concurrent.Callable;
+User user; // don't touch
+String userid;
+
+/*** SYNC ***/
+setSyncMinInterval(10.0f);
+setSyncMaxInterval(20.0f);
+setSyncDelay(5.0f);
+/*setSyncEnabled(true);
+setFileSyncEnabled(true);*/
+
+addActionBarItem("sync", new ToggleActionButtonCallback() {
+    actionOnLabel() {
+        "Sync enabled";
+    }
+    actionOn() {
+        setSyncEnabled(false);
+        setFileSyncEnabled(false);
+        showToast("Sync disabled.");
+    }
+    isActionOff() {
+        isSyncEnabled();
+    }
+    actionOffLabel() {
+        "Sync disabled";
+    }
+    actionOff() {
+        setSyncEnabled(true);
+        setFileSyncEnabled(true);
+        showToast("Sync enabled.");
+    }
+});
+
+addActionBarItem("internal_gps", new ToggleActionButtonCallback() {
+    actionOnLabel() {
+        "Internal GPS enabled";
+    }
+    actionOn() {
+        stopGPS();
+        showToast("GPS disabled.");
+    }
+    isActionOff() {
+        isInternalGPSOn();
+    }
+    actionOffLabel() {
+        "Internal GPS disabled";
+    }
+    actionOff() {
+        if(isExternalGPSOn()) {
+            stopGPS();
+        }
+        startInternalGPS();
+        showToast("GPS enabled.");
+    }
+});
+
+addActionBarItem("external_gps", new ToggleActionButtonCallback() {
+    actionOnLabel() {
+        "External GPS enabled";
+    }
+    actionOn() {
+        stopGPS();
+        showToast("GPS disabled.");
+
+    }
+    isActionOff() {
+        isExternalGPSOn();
+    }
+    actionOffLabel() {
+        "External GPS disabled";
+    }
+    actionOff() {
+        if(isInternalGPSOn()) {
+            stopGPS();
+        }
+        startExternalGPS();
+        if(isBluetoothConnected()) {
+            showToast("GPS enabled.");
+        } else {
+            showToast("Please enable bluetooth.");
+            this.isActionOff();
+        }
+    }
+});
+
+makeLocalID(){
+    fetchOne("CREATE TABLE IF NOT EXISTS localSettings (key text primary key, value text);");
+    fetchOne("drop view if exists identifierAsSpreadsheet;");
+    fetchOne("create view identifierAsSpreadsheet as select uuid, group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' ') as response from (select * from latestNonDeletedArchentIdentifiers order by attributename) group by uuid;");
+}
+
+makeLocalID();
+
+/*** CONTROL ***/
+onEvent("Control", "show", "resetNavigation();");
+onEvent("Control/Fish", "show", "refreshFishList();");
+onEvent("Control/Fish/New_Fish", "click", "newFish();");
+onEvent("Control/Fish/Fish_List", "click", "loadFish();");
+
+resetNavigation() {
+    removeNavigationButton("duplicate");
+    removeNavigationButton("save_and_new");
+    removeNavigationButton("save_and_close");
+    removeNavigationButton("delete");   
+}
+
+refreshFishList() {
+    populateCursorList("Control/Fish/Fish_List", "select uuid, group_concat(coalesce(measure, ''),' ') as response " + 
+        "from (select * from latestNonDeletedArchentIdentifiers order by attributename DESC) " +
+        "where aenttypename = 'Fish' " +
+        "group by uuid " +
+        "order by response DESC limit ? offset ?;", 25);
+}
+
+/*** FISH***/
+onEvent("Fish", "show", "addFishNavigation();");
+onEvent("Fish/Fish/Attach_Photo", "click", "attachPictureTo(\"Fish/Fish/Photos\");");
+onEvent("Fish/Fish/Fill_In_GPS", "click", "fillInGPS(\"Fish/Fish/\");");
+
+String fish_id = null;
+
+newFish() {
+    newTabGroup("Fish");
+    fish_id = null;
+    setFieldValue("Fish/Fish/Username", username);
+    setFieldValue("Fish/Fish/Time", new java.text.SimpleDateFormat("d-MMM-yy HH:mm:ss z").format(new Date()));
+    saveFish(new Callable() {
+        call() {
+            saveTabGroup("Fish", fish_id, null, null, new SaveCallback() {
+                onSave(uuid, newRecord) {
+                    fish_id = uuid;
+                }
+            }, true);
+        }
+    });
+}
+
+loadFish() {
+    fish_id = getListItemValue();
+    loadFishFrom(fish_id);
+}
+
+loadFishFrom(archentid) {
+    if (isNull(archentid)) {
+        showToast("No {Fish} selected");
+        return;
+    }
+
+    showTabGroup("Fish", archentid, new FetchCallback() {
+        onFetch(result) {
+            fish_id = archentid;
+            saveTabGroup("Fish", fish_id, null, null, new SaveCallback() {
+                onSave(uuid, newRecord) {
+                    fish_id = uuid;
+                }
+            }, true);
+        }
+    });
+}
+
+saveFish(Callable callback) {
+    saveTabGroup("Fish", fish_id, null, null, new SaveCallback() {
+        onSave(uuid, newRecord) {
+            fish_id = uuid;
+            if(callback != null) callback.call();
+        }
+    });
+}
+
+deleteFish() {
+    if (!isNull(fish_id)) {
+        showAlert("Confirm Deletion", "Press OK to Delete this {Fish}!", "reallyDeleteFish()", "doNotDelete()");
+    } else {
+        cancelTabGroup("Fish", true);
+    }
+}
+
+reallyDeleteFish() {
+    deleteArchEnt(fish_id, new DeleteCallback() {
+        onDelete(uuid) {
+            cancelTabGroup("Fish", false);
+        }
+    });
+}
+
+loadFishAttributes() {
+    makeVocab("RadioGroup", "Fish/Fish/Sex", "Sex");
+    makeVocab("CheckBoxGroup", "Fish/Fish/Weather_Conditions", "Weather Conditions");
+    makeVocab("DropDown", "Fish/Fish/Fishing_Methods", "Fishing Method");
+    makeVocab("RadioGroup", "Fish/Fish/Released", "Released?");
+}
+
+addFishNavigation() {
+    removeNavigationButton("duplicate");
+    removeNavigationButton("save_and_new");
+    removeNavigationButton("save_and_close");
+    removeNavigationButton("delete");   
+
+    addNavigationButton("duplicate", new ActionButtonCallback() {
+        actionOnLabel() {
+            "Duplicate {Fish}";
+        }
+        actionOn() {
+            showTabGroup("Fish", fish_id, new FetchCallback() {
+                onFetch(result) {
+                    fish_id = null;
+                    setFieldValue("Fish/Fish/Username", username);
+                    populateCameraPictureGallery("Fish/Fish/Photos", new ArrayList());
+                    setFieldValue("Fish/Fish/Time", new java.text.SimpleDateFormat("d-MMM-yy HH:mm:ss z").format(new Date()));
+                    saveFish(new Callable() {
+                        call() {
+                            saveTabGroup("Fish", fish_id, null, null, new SaveCallback() {
+                                onSave(uuid, newRecord) {
+                                    fish_id = uuid;
+                                }
+                            }, true);
+                        }
+                    });
+                }
+            });
+        }
+    }, "success");
+
+    addNavigationButton("save_and_new", new ActionButtonCallback() {
+        actionOnLabel() {
+            "New {Fish}";
+        }
+        actionOn() {
+            newFish();
+        }
+    }, "success");
+
+    addNavigationButton("save_and_close", new ActionButtonCallback() {
+        actionOnLabel() {
+            "Close {Fish} Tab";
+        }
+        actionOn() {
+            cancelTabGroup("Fish", false);
+        }
+    }, "success");
+
+    addNavigationButton("delete", new ActionButtonCallback() {
+        actionOnLabel() {
+            "Delete {Fish}";
+        }
+        actionOn() {
+            deleteFish();
+        }
+    }, "danger");
+}
+
+
+/*** MISC ***/
+makeVocab(String type, String path, String attrib){
+    fetchAll("select vocabid, vocabname from vocabulary join attributekey using (attributeid) where attributename = '"+attrib+"' order by vocabcountorder",
+        new FetchCallback() {
+            onFetch(result) {
+                if(type.equals("CheckBoxGroup")) {
+                    populateCheckBoxGroup(path, result);
+                } else if(type.equals("DropDown")) {
+                    populateDropDown(path, result);
+                } else if(type.equals("RadioGroup")) {
+                    populateRadioGroup(path, result);
+                } else if(type.equals("List")) {
+                    populateList(path, result);
+                }
+            }
+        });
+}
+
+doNotDelete() {
+    showToast("Delete Cancelled.");
+}
+
+fillInGPS(String path) {
+    Object position = getGPSPosition();
+    if (position != null) {
+        Double latitude = position.getLatitude();
+        Double longitude = position.getLongitude();
+        setFieldValue(path+"Latitude", latitude);
+        setFieldValue(path+"Longitude", longitude);
+    } else {
+        showToast("GPS Not initialized");
+    }
+}
+
+/*** 'Uneditable' - you can edit the code below with extreme precaution ***/
+/*** USER ***/
+
+loadUsers() {
+    fetchAll("select userid, fname || ' ' || lname from user", new FetchCallback() {
+        onFetch(result) {
+            populateList("user/usertab/users", result);
+        }
+    });
+}
+
+loadUsers();
+
+String username = "";
+
+login() {
+    fetchOne("select userid,fname,lname,email from user where userid='" + getListItemValue() + "';", new FetchCallback() {
+        onFetch(result) {
+            user = new User(result.get(0),result.get(1),result.get(2),result.get(3));
+            setUser(user);
+            username = result.get(1) + " " + result.get(2);
+            showTabGroup("Control");
+        }
+    });
+}
+
+onEvent("user/usertab/users", "click", "login()");
+
+loadFishAttributes();

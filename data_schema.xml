@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSchema>
+  <ArchaeologicalElement name="Fish">
+    <description></description>
+    <property name="Username" type="freetext" isIdentifier="true">
+      <description>Description TBD</description>
+    </property>
+    <property name="Time" type="freetext" isIdentifier="true">
+      <description>Description TBD</description>
+    </property>
+    <property name="Photos" type="file" file="true" thumbnail="true">
+      <description>Description TBD</description>
+    </property>
+    <property name="Latitude" type="freetext">
+      <description>Description TBD</description>
+    </property>
+    <property name="Longitude" type="freetext">
+      <description>Description TBD</description>
+    </property>
+    <property name="Size" type="enum">
+      <description>Description TBD</description>
+      <lookup>
+      </lookup>
+    </property>
+    <property name="Sex" type="enum">
+      <description>Description TBD</description>
+      <lookup>
+        <term> {Male}
+          <description>Description TBD</description>
+        </term>
+        <term> {Female}
+          <description>Description TBD</description>
+        </term>
+        <term> {Unknown}
+          <description>Description TBD</description>
+        </term>
+      </lookup>
+    </property>
+    <property name="Location" type="freetext">
+      <description>Description TBD</description>
+    </property>
+    <property name="Depth" type="freetext">
+      <description>Description TBD</description>
+    </property>
+    <property name="Weather Conditions" type="enum">
+      <description>Description TBD</description>
+      <lookup>
+        <term> {Sunny}
+          <description>Description TBD</description>
+        </term>
+        <term> {Cloudy}
+          <description>Description TBD</description>
+        </term>
+        <term> {Stormy}
+          <description>Description TBD</description>
+        </term>
+        <term> {Rain}
+          <description>Description TBD</description>
+        </term>
+        <term> {Lots_of_Rain}
+          <description>Description TBD</description>
+        </term>
+      </lookup>
+    </property>
+    <property name="Fishing Method" type="enum">
+      <description>Description TBD</description>
+      <lookup>
+        <term> {No_Observation}
+          <description>Description TBD</description>
+        </term>
+        <term> {Bait}
+          <description>Description TBD</description>
+        </term>
+        <term> {Lure}
+          <description>Description TBD</description>
+        </term>
+        <term> {Fly}
+          <description>Description TBD</description>
+        </term>
+        <term> {Net}
+          <description>Description TBD</description>
+        </term>
+      </lookup>
+    </property>
+    <property name="Number of Fishers in Party">
+      <description>Description TBD</description>
+    </property>
+    <property name="Comments">
+      <description>Description TBD</description>
+    </property>
+    <property name="Released?" type="enum">
+      <description>Description TBD</description>
+      <lookup>
+        <term> {Yes}
+          <description>Description TBD</description>
+        </term>
+        <term> {No}
+          <description>Description TBD</description>
+        </term>
+      </lookup>
+    </property>
+    <property name="Tag no" type="freetext">
+      <description>Description TBD</description>
+    </property>
+  </ArchaeologicalElement>
+</dataSchema>
