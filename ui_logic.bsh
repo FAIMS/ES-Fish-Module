@@ -7,8 +7,10 @@ String userid;
 setSyncMinInterval(10.0f);
 setSyncMaxInterval(20.0f);
 setSyncDelay(5.0f);
-/*setSyncEnabled(true);
-setFileSyncEnabled(true);*/
+setSyncEnabled(true);
+setFileSyncEnabled(true);
+
+startInternalGPS();
 
 addActionBarItem("sync", new ToggleActionButtonCallback() {
     actionOnLabel() {
