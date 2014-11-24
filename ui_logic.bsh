@@ -126,7 +126,7 @@ newFish() {
     newTabGroup("Fish");
     fish_id = null;
     setFieldValue("Fish/Fish/Username", username);
-    setFieldValue("Fish/Fish/Time", new java.text.SimpleDateFormat("d-MMM-yy HH:mm:ss z").format(new Date()));
+    setTimestamp("Fish/Fish/Time");
     saveFish(new Callable() {
         call() {
             saveTabGroup("Fish", fish_id, null, null, new SaveCallback() {
@@ -209,7 +209,7 @@ addFishNavigation() {
                     fish_id = null;
                     setFieldValue("Fish/Fish/Username", username);
                     populateCameraPictureGallery("Fish/Fish/Photos", new ArrayList());
-                    setFieldValue("Fish/Fish/Time", new java.text.SimpleDateFormat("d-MMM-yy HH:mm:ss z").format(new Date()));
+                    setTimestamp("Fish/Fish/Time");
                     saveFish(new Callable() {
                         call() {
                             saveTabGroup("Fish", fish_id, null, null, new SaveCallback() {
@@ -229,6 +229,11 @@ addFishNavigation() {
             "New {Fish}";
         }
         actionOn() {
+            if(!isNull(fish_id)) {
+                newPhotolognewFish();
+            } else {
+                showAlert("Warning", "You will lose any unsaved changes!", "newFish();", "");
+            }
             newFish();
         }
     }, "success");
@@ -238,7 +243,12 @@ addFishNavigation() {
             "Close {Fish} Tab";
         }
         actionOn() {
-            cancelTabGroup("Fish", false);
+            if(!isNull(fish_id)) {
+                cancelTabGroup("Fish", false);
+            } else {
+                cancelTabGroup("Fish", true);
+            }
+            
         }
     }, "success");
 
@@ -273,6 +283,10 @@ makeVocab(String type, String path, String attrib){
 
 doNotDelete() {
     showToast("Delete Cancelled.");
+}
+
+setTimestamp(String path) {
+    setFieldValue(path, new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss z").format(new Date()));
 }
 
 fillInGPS(String path) {
