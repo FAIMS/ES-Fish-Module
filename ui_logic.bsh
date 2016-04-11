@@ -125,8 +125,8 @@ String fish_id = null;
 newFish() {
     newTabGroup("Fish");
     fish_id = null;
-    setFieldValue("Fish/Fish/Username", username);
-    setTimestamp("Fish/Fish/Time");
+    setFieldValue("Fish/Fish/Author", username);
+    setTimestamp("Fish/Fish/Timestamp");
     saveFish(new Callable() {
         call() {
             saveTabGroup("Fish", fish_id, null, null, new SaveCallback() {
@@ -187,6 +187,7 @@ reallyDeleteFish() {
 }
 
 loadFishAttributes() {
+    makeVocab("PictureGallery", "Fish/Fish/Fish_Type", "Fish Type");
     makeVocab("RadioGroup", "Fish/Fish/Sex", "Sex");
     makeVocab("CheckBoxGroup", "Fish/Fish/Weather_Conditions", "Weather Conditions");
     makeVocab("DropDown", "Fish/Fish/Fishing_Methods", "Fishing Method");
@@ -207,9 +208,9 @@ addFishNavigation() {
             showTabGroup("Fish", fish_id, new FetchCallback() {
                 onFetch(result) {
                     fish_id = null;
-                    setFieldValue("Fish/Fish/Username", username);
+                    setFieldValue("Fish/Fish/Author", username);
                     populateCameraPictureGallery("Fish/Fish/Photos", new ArrayList());
-                    setTimestamp("Fish/Fish/Time");
+                    setTimestamp("Fish/Fish/Timestamp");
                     saveFish(new Callable() {
                         call() {
                             saveTabGroup("Fish", fish_id, null, null, new SaveCallback() {
@@ -262,23 +263,95 @@ addFishNavigation() {
     }, "danger");
 }
 
+/** Wrapper for to make a vocab without an exlusion list **/
+makeVocab(String type, String path, String attrib) {
+  makeVocab(type, path, attrib, null);
+}
+
+/** Vocab Population **/
+/* Populates the path specified vocabulary from the database based on the given attribute name, where type 
+is the type of the vocab to populate (PictureGallery, HierarchicalPictureGallery, CheckBoxGroup, DropDown, HierarchicalDropDown, RadioGroup or List). */
+makeVocab(String type, String path, String attrib, List vocabExclusions) {
+    makeVocab(type, path, attrib, vocabExclusions, null);
+}
 
 /*** MISC ***/
-makeVocab(String type, String path, String attrib){
-    fetchAll("select vocabid, vocabname from vocabulary join attributekey using (attributeid) where attributename = '"+attrib+"' order by vocabcountorder",
-        new FetchCallback() {
-            onFetch(result) {
-                if(type.equals("CheckBoxGroup")) {
-                    populateCheckBoxGroup(path, result);
-                } else if(type.equals("DropDown")) {
-                    populateDropDown(path, result);
-                } else if(type.equals("RadioGroup")) {
-                    populateRadioGroup(path, result);
-                } else if(type.equals("List")) {
-                    populateList(path, result);
-                }
+makeVocab(String type, String path, String attrib, List vocabExclusions, String callbackFunction){
+  if (isNull(type) || isNull(path) || isNull(attrib)) {
+    Log.e("makeVocab()", "Can't make populate a vocab when the given type, path or attribute is Null");
+    return;
+  }
+
+  if (type.equals("PictureGallery")) {
+    String pictureGalleryQuery = "SELECT vocabid, vocabname, pictureurl "+
+                                 "  FROM vocabulary "+
+                                 "  LEFT OUTER JOIN attributekey USING (attributeid) "+
+                                 " WHERE attributename = '" + attrib + "' "+
+                                 " ORDER BY  vocabcountorder;";
+    fetchAll(pictureGalleryQuery, new FetchCallback() {
+      onFetch(pictures) {
+        populatePictureGallery(path, pictures);
+        if (callbackFunction != null && !isNull(callbackFunction)) {
+          execute(callbackFunction);
+        }
+      }
+    });
+    return;
+  }
+
+  if (type.equals("HierarchicalPictureGallery")) {
+    populateHierarchicalPictureGallery(path, attrib);
+    if (callbackFunction != null && !isNull(callbackFunction)) {
+      execute(callbackFunction);
+    }
+    return;
+  }
+
+  if (type.equals("HierarchicalDropDown")) {
+    // populateHierarchicalDropDown(path, attrib);
+    populateHierarchicalDropDown(path, attrib, true);
+    if (callbackFunction != null && !isNull(callbackFunction)) {
+      execute(callbackFunction);
+    }
+    return;
+  }
+
+  String getAttributeVocabQuery = "SELECT vocabid, vocabname "+
+                                  "  FROM vocabulary "+
+                                  "  JOIN attributekey USING (attributeid) "+
+                                  " WHERE attributename = '" + attrib + "' "+
+                                  " ORDER BY vocabcountorder;";
+  fetchAll(getAttributeVocabQuery,
+    new FetchCallback() {
+      onFetch(result) {
+        // print("makeVocab() result: " + result);
+        if (result!=null && result.size()>0 && vocabExclusions!=null && vocabExclusions.size()>0) {
+          List filteredVocab = new ArrayList();
+          for(item : result) {
+            if (vocabExclusions.contains(item.get(1))) {
+              Log.d("makeVocab()", "removing vocab exclusion: " + item.get(1));
+            } else {
+              filteredVocab.add(item);
             }
-        });
+          }
+          result=filteredVocab;
+        }
+        // print("makeVocab() filtered result: " + result);
+        if(type.equals("CheckBoxGroup")) {
+          populateCheckBoxGroup(path, result);
+        } else if(type.equals("DropDown")) {
+          // populateDropDown(path, result);
+          populateDropDown(path, result, true);
+        } else if(type.equals("RadioGroup")) {
+          populateRadioGroup(path, result);
+        } else if(type.equals("List")) {
+          populateList(path, result);
+        }
+        if (callbackFunction != null && !isNull(callbackFunction)) {
+          execute(callbackFunction);
+        }
+      }
+    });
 }
 
 doNotDelete() {
