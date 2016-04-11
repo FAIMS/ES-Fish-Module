@@ -2,12 +2,18 @@
 <dataSchema>
   <ArchaeologicalElement name="Fish">
     <description></description>
-    <property name="Username" type="freetext" isIdentifier="true">
+    <!--New props and modified old props-->
+    <property name="Fishtype" type="freetext" isIdentifier="true">
       <description>Description TBD</description>
     </property>
-    <property name="Time" type="freetext" isIdentifier="true">
+    <property name="Author" type="freetext" isIdentifier="true">
       <description>Description TBD</description>
     </property>
+    <property name="Timestamp" type="freetext" isIdentifier="true">
+      <description>Description TBD</description>
+    </property>
+
+    <!--Old props-->
     <property name="Photos" type="file" file="true" thumbnail="true">
       <description>Description TBD</description>
     </property>

@@ -29,8 +29,8 @@
           </Control>
           <Fish>
             <Fish>
-              <Username/>
-              <Time/>
+              <Author/>
+              <Timestamp/>
               <Photos/>
               <Attach_Photo/>
               <container1>
@@ -105,7 +105,7 @@
         <trigger ref="New_Fish" faims_style_class="faims-blue">
           <label>{New_Fish}</label>
         </trigger>
-        <select1 appearance="compact" ref="Fish_List" faims_certainty="false" faims_annotation="false" faims_read_only="false" faims_style_class="fish_list">
+        <select1 appearance="compact" ref="Fish_List" faims_certainty="true" faims_annotation="true" faims_read_only="false" faims_style_class="fish_list">
           <label>{Fish_List}</label>
           <item>
             <label>placeholder</label>
@@ -118,13 +118,13 @@
       <label>{Fish}</label>
       <group ref="Fish">
         <label>{Fish}</label>
-        <input ref="Username" faims_attribute_name="Username" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_read_only="true">
-          <label>{Username}</label>
+        <input ref="Author" faims_attribute_name="Author" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="true">
+          <label>{Author}</label>
         </input>
-        <input ref="Time" faims_attribute_name="Time" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_read_only="true">
-          <label>{Time}</label>
+        <input ref="Timestamp" faims_attribute_name="Timestamp" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="true">
+          <label>{Timestamp}</label>
         </input>
-        <select type="camera" faims_sync="true" ref="Photos" faims_attribute_name="Photos" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+        <select type="camera" faims_sync="true" ref="Photos" faims_attribute_name="Photos" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
           <label>{Photos}</label>
           <item>
             <label>placeholder</label>
@@ -138,13 +138,13 @@
           <label/>
           <group ref="child1" faims_style="even">
             <label/>
-            <input ref="Latitude" faims_attribute_name="Latitude" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+            <input ref="Latitude" faims_attribute_name="Latitude" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
               <label>{Latitude}</label>
             </input>
           </group>
           <group ref="child2" faims_style="even">
             <label/>
-            <input ref="Longitude" faims_attribute_name="Longitude" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+            <input ref="Longitude" faims_attribute_name="Longitude" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
               <label>{Longitude}</label>
             </input>
           </group>
@@ -152,50 +152,50 @@
         <trigger ref="Fill_In_GPS" faims_style_class="faims-blue">
           <label>{Fill_In_GPS}</label>
         </trigger>
-        <input ref="Size" faims_attribute_name="Size" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+        <input ref="Size" faims_attribute_name="Size" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
           <label>{Size}</label>
         </input>
-        <select1 appearance="full" ref="Sex" faims_attribute_name="Sex" faims_attribute_type="vocab" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+        <select1 appearance="full" ref="Sex" faims_attribute_name="Sex" faims_attribute_type="vocab" faims_certainty="true" faims_annotation="true" faims_read_only="false">
           <label>{Sex}</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
           </item>
         </select1>
-        <input ref="Location" faims_attribute_name="Location" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+        <input ref="Location" faims_attribute_name="Location" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
           <label>{Location}</label>
         </input>
-        <input ref="Depth" faims_attribute_name="Depth" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+        <input ref="Depth" faims_attribute_name="Depth" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
           <label>{Depth}</label>
         </input>
-        <select ref="Weather_Conditions" faims_attribute_name="Weather Conditions" faims_attribute_type="vocab" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+        <select ref="Weather_Conditions" faims_attribute_name="Weather Conditions" faims_attribute_type="vocab" faims_certainty="true" faims_annotation="true" faims_read_only="false">
           <label>{Weather_Conditions}</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
           </item>
         </select>
-        <select1 ref="Fishing_Methods" faims_attribute_name="Fishing Method" faims_attribute_type="vocab" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+        <select1 ref="Fishing_Methods" faims_attribute_name="Fishing Method" faims_attribute_type="vocab" faims_certainty="true" faims_annotation="true" faims_read_only="false">
           <label>{Fishing_Methods}</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
           </item>
         </select1>
-        <input ref="Number_of_Fishers" faims_attribute_name="Number of Fishers in Party" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+        <input ref="Number_of_Fishers" faims_attribute_name="Number of Fishers in Party" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
           <label>{Number_of_Fishers}</label>
         </input>
-        <input ref="Comments" faims_attribute_name="Comments" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+        <input ref="Comments" faims_attribute_name="Comments" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
           <label>{Comments}</label>
         </input>
-        <select1 appearance="full" ref="Released" faims_attribute_name="Released?" faims_attribute_type="vocab" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+        <select1 appearance="full" ref="Released" faims_attribute_name="Released?" faims_attribute_type="vocab" faims_certainty="true" faims_annotation="true" faims_read_only="false">
           <label>{Released}</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
           </item>
         </select1>
-        <input ref="Tag_No" faims_attribute_name="Tag no" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+        <input ref="Tag_No" faims_attribute_name="Tag no" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
           <label>{Tag_No}</label>
         </input>
       </group>
