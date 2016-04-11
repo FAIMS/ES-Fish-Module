@@ -3,8 +3,28 @@
   <ArchaeologicalElement name="Fish">
     <description></description>
     <!--New props and modified old props-->
-    <property name="Fishtype" type="freetext" isIdentifier="true">
+    <property name="Fish Type" type="enum" isIdentifier="true">
       <description>Description TBD</description>
+      <lookup>
+        <term pictureURL="files/data/Mongrovejackjr.jpg"> {Mangrove_Jack}
+          <description>Description TBD</description>
+        </term>
+        <term pictureURL="files/data/Carp.jpg"> {Carp}
+          <description>Description TBD</description>
+        </term>
+        <term pictureURL="files/data/Barramundi.jpg"> {Barramundi}
+          <description>Description TBD</description>
+        </term>
+        <term pictureURL="files/data/Bass.jpg"> {Bass}
+          <description>Description TBD</description>
+        </term>
+        <term pictureURL="files/data/Perch.jpg"> {Perch}
+          <description>Description TBD</description>
+        </term>
+        <term pictureURL="files/data/Garfish.jpg"> {Garfish}
+          <description>Description TBD</description>
+        </term>
+      </lookup>
     </property>
     <property name="Author" type="freetext" isIdentifier="true">
       <description>Description TBD</description>
