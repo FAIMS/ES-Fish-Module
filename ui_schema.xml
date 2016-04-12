@@ -42,6 +42,7 @@
                 </child2>
               </container1>
               <Fill_In_GPS/>
+              <Fish_Type/>
               <Size/>
               <Sex/>
               <Location/>
@@ -152,6 +153,13 @@
         <trigger ref="Fill_In_GPS" faims_style_class="faims-blue">
           <label>{Fill_In_GPS}</label>
         </trigger>
+        <select1 ref="Fish_Type" faims_attribute_type="Fish Type" type="image" faims_certainty="true" faims_annotation="true" faims_read_only="false">
+          <label>{Fish_Type}</label>
+          <item>
+            <label>dummy</label>
+            <value>dummy</value>
+          </item>
+        </select1>
         <input ref="Size" faims_attribute_name="Size" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
           <label>{Size}</label>
         </input>
