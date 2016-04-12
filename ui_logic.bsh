@@ -191,7 +191,7 @@ loadFishAttributes() {
     makeVocab("PictureGallery", "Fish/Fish/Fish_Type", "Fish Type");
     makeVocab("RadioGroup", "Fish/Fish/Sex", "Sex");
     makeVocab("CheckBoxGroup", "Fish/Fish/Weather_Conditions", "Weather Conditions");
-    makeVocab("DropDown", "Fish/Fish/Fishing_Methods", "Fishing Method");
+    makeVocab("HierarchicalDropDown", "Fish/Fish/Fishing_Methods", "Fishing Method");
     makeVocab("RadioGroup", "Fish/Fish/Released", "Released?");
 }
 
