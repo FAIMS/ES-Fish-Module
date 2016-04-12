@@ -330,3 +330,126 @@ login() {
 onEvent("user/usertab/users", "click", "login()");
 
 loadFishAttributes();
+
+/******************************* RANGE CHECKING *******************************/
+import java.math.BigDecimal;
+
+Map    RANGES        = new HashMap();
+String DROPDOWN_REF  = "Fish/Fish/Fish_Type";
+List   DROPDOWN_VALS = new ArrayList(); //[String: vocabid, String: vocabname]
+
+setRange(String k1, String k2, String min, String max) {
+  // Convert k2 from human-readable vocabname to vocabid
+  k2 = "{" + k2 + "}";
+  for (List val : DROPDOWN_VALS) {
+    String vocabId   = val.get(0);
+    String vocabName = val.get(1);
+
+    if (k2.equals(vocabName)) {
+      k2 = vocabId;
+      break;
+    }
+  }
+
+  key = makeKey(k1, k2);
+  val = makeVal(min, max);
+  RANGES.put(key, val);
+
+  // onFocus() binding to do validation on blur
+  onFocusCallback = null;
+  onBlurCallback  = "validateOnBlur(\"" + k1 + "\")";
+  onFocus(k1, onFocusCallback, onBlurCallback);
+}
+
+getRange(k1, k2) {
+  key = makeKey(k1, k2);
+  return getRange(key);
+}
+
+getRange(key) {
+  return RANGES.get(key);
+}
+
+makeKey(String k1, String k2) {
+  List l = new ArrayList();
+  l.add(k1);
+  l.add(k2);
+  return l;
+}
+
+makeVal(String min, String max) {
+  List l = new ArrayList();
+  l.add(0, min);
+  l.add(1, max);
+  return l;
+}
+
+getMin(List range) { return new BigDecimal(range.get(0)); }
+
+getMax(List range) { return new BigDecimal(range.get(1)); }
+
+isNullBirdSpecies() {
+  return isNull(getFieldValue(DROPDOWN_REF));
+}
+
+isInRange(String fieldRef) {
+  if (isNullBirdSpecies())             return true;
+  if (isNull(getFieldValue(fieldRef))) return true;
+
+  k1 = fieldRef;
+  k2 = getFieldValue(DROPDOWN_REF);
+
+  range = getRange(k1, k2); /* oh, btw */ if (range == null) return true;
+  min = getMin(range);
+  max = getMax(range);
+
+  val = getFieldValue(fieldRef);
+  val = new BigDecimal(val);
+
+  if (val.compareTo(min) == -1) return false;
+  if (val.compareTo(max) == +1) return false;
+  return true;
+}
+
+validateOnBlur(String fieldRef) {
+  if (isInRange(fieldRef)) {
+    return;
+  }
+
+  // Find the permitted values for the failing field
+  k1 = fieldRef;
+  k2 = getFieldValue(DROPDOWN_REF);
+  range = getRange(k1, k2);
+
+  // Get the human-readable name for the failing field
+  String arch16n = "";
+  arch16n = fieldRef.split("/")[2];
+  arch16n = "{" + arch16n + "}";
+
+  // Build a nice error message for the user
+  String msg = "";
+  msg += "Value out of range for the field '" + arch16n + "'. ";
+  msg += "Permitted values are in the interval " + range.toString() + ".";
+
+  // Inform user that dey dun goof'd
+  showWarning("Validation Failed", msg);
+}
+
+setRanges() {
+  species = new ArrayList();
+  species.add("zebra_finch");
+  species.add("long-tailed_finch");
+  species.add("house_sparrow");
+
+  for (s : species) {
+    setRange("Measurements/Measurements/Tarsus_Length", s,   "6.0",  "25.0");
+    setRange("Measurements/Measurements/Head_Length",   s,  "15.0",  "40.0");
+    setRange("Measurements/Measurements/Bill_Length",   s,   "6.0",  "16.0");
+    setRange("Measurements/Measurements/Bill_Height",   s,   "6.0",  "10.0");
+    setRange("Measurements/Measurements/Wing_Length",   s,  "20.0",  "90.0");
+    setRange("Measurements/Measurements/Tail_Length",   s,  "20.0", "130.0");
+    setRange("Measurements/Measurements/Mass",          s,   "6.0",  "35.0");
+  }
+}
+
+fetchVocab("Bird Species", DROPDOWN_VALS, "setRanges()");
