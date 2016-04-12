@@ -1,5 +1,6 @@
 /*** 'Editable' - you can edit the code below based on the needs ***/
 import java.util.concurrent.Callable;
+import android.util.Log;
 User user; // don't touch
 String userid;
 
@@ -263,6 +264,21 @@ addFishNavigation() {
     }, "danger");
 }
 
+fetchVocab(String vocabName, List storageList) {
+  fetchVocab(vocabName, storageList, null);
+}
+fetchVocab(String vocabName, List storageList, String callbackFunction) {
+  fetchAll("select vocabid, vocabname from vocabulary left join attributekey using (attributeid) where attributename = '" + vocabName + "';", new FetchCallback() {
+    onFetch(result) {
+      storageList.addAll(result);
+      Log.d("fetchVocab()", "Fetched vocabulary \"" + vocabname + "\" contents: " + result.toString());
+      if (callbackFunction != null && !isNull(callbackFunction)) {
+        execute(callbackFunction);
+      }
+    }
+  });
+}
+
 /** Wrapper for to make a vocab without an exlusion list **/
 makeVocab(String type, String path, String attrib) {
   makeVocab(type, path, attrib, null);
@@ -407,10 +423,18 @@ loadFishAttributes();
 /******************************* RANGE CHECKING *******************************/
 import java.math.BigDecimal;
 
+// The range permitted in the "Size" attribute depends on the value of the
+// dropdown referred to by `DROPDOWN_REF`.
 Map    RANGES        = new HashMap();
 String DROPDOWN_REF  = "Fish/Fish/Fish_Type";
 List   DROPDOWN_VALS = new ArrayList(); //[String: vocabid, String: vocabname]
 
+// Sets range validation on the GUI element in `k1` (which is the path to the
+// element to validated). Validation is only undertaken if the value of `k2`
+// equals the value of the element at `DROPDOWN_REF` at the time the `onFocus`
+// event is triggered for `k1`.
+//
+// The upper and lower range bounds are set to `min` and `max`, inclusive.
 setRange(String k1, String k2, String min, String max) {
   // Convert k2 from human-readable vocabname to vocabid
   k2 = "{" + k2 + "}";
@@ -424,6 +448,7 @@ setRange(String k1, String k2, String min, String max) {
     }
   }
 
+  // Save the range
   key = makeKey(k1, k2);
   val = makeVal(min, max);
   RANGES.put(key, val);
@@ -484,6 +509,8 @@ isInRange(String fieldRef) {
   return true;
 }
 
+// Shows a warning if the value of the element at `fieldRef` is out of range.
+// Does nothing otherwise.
 validateOnBlur(String fieldRef) {
   if (isInRange(fieldRef)) {
     return;
@@ -501,28 +528,21 @@ validateOnBlur(String fieldRef) {
 
   // Build a nice error message for the user
   String msg = "";
-  msg += "Value out of range for the field '" + arch16n + "'. ";
-  msg += "Permitted values are in the interval " + range.toString() + ".";
+  msg += "{Value_out_of_range_for_the_field} '" + arch16n + "'. ";
+  msg += "{Permitted_values_are_in_the_interval} " + range.toString() + ".";
 
   // Inform user that dey dun goof'd
   showWarning("Validation Failed", msg);
 }
 
 setRanges() {
-  species = new ArrayList();
-  species.add("zebra_finch");
-  species.add("long-tailed_finch");
-  species.add("house_sparrow");
-
-  for (s : species) {
-    setRange("Measurements/Measurements/Tarsus_Length", s,   "6.0",  "25.0");
-    setRange("Measurements/Measurements/Head_Length",   s,  "15.0",  "40.0");
-    setRange("Measurements/Measurements/Bill_Length",   s,   "6.0",  "16.0");
-    setRange("Measurements/Measurements/Bill_Height",   s,   "6.0",  "10.0");
-    setRange("Measurements/Measurements/Wing_Length",   s,  "20.0",  "90.0");
-    setRange("Measurements/Measurements/Tail_Length",   s,  "20.0", "130.0");
-    setRange("Measurements/Measurements/Mass",          s,   "6.0",  "35.0");
-  }
+  setRange("Fish/Fish/Size", "Mangrove_Jack", "15.0", "120");
+  setRange("Fish/Fish/Size", "Carp",          "15.0", "100");
+  setRange("Fish/Fish/Size", "Barramundi",    "15.0", "120");
+  setRange("Fish/Fish/Size", "Bass",          "15.0",  "65");
+  setRange("Fish/Fish/Size", "Perch",         "15.0",  "45");
+  setRange("Fish/Fish/Size", "Garfish",        "0.0",  "22");
 }
 
-fetchVocab("Bird Species", DROPDOWN_VALS, "setRanges()");
+// `setRanges` requires `DROPDOWN_VALS` to contain the menu entries of Fish Type
+fetchVocab("Fish Type", DROPDOWN_VALS, "setRanges()");
