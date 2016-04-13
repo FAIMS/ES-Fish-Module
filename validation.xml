@@ -1,0 +1,30 @@
+<ValidationSchema>
+ 
+<ArchaeologicalElement name='Fish'>
+
+<property name='Size'>
+    <validator type='querychecker'>
+<query><![CDATA[
+select fishSize between minLength and maxLength, 'Your '||fish||' is not between ' || minLength || ' and ' || maxLength||'. I think the fish is: '||fishSize
+from ( select '{Mangrove_Jack}' as fish, 15 as minLength, 120 as maxLength
+		union
+	   select '{Carp}' as fish, 15 as minLength, 100 as maxLength
+		union
+	   select '{Barramundi}' as fish, 15 as minLength, 120 as maxLength
+		union
+	   select '{Bass}' as fish, 15 as minLength, 65 as maxLength
+		union
+	   select '{Perch}' as fish, 15 as minLength, 45 as maxLength
+		union
+	   select '{Garfish}' as fish, 0 as minLength, 22 as maxLength
+		) lengths, (select cast (? as integer) as fishSize) fishSize
+WHERE fish = ?;]]></query>
+	<param type='field' value="measure" />
+        <param type='query' value="select coalesce(vocabname, 'None') from latestnondeletedarchent join idealaent using (aenttypeid) join attributekey using (attributeid) left outer join latestnondeletedaentvalue using (uuid, attributeid)   left outer join vocabulary using (vocabid) where uuid = ? and (aenttimestamp = ? or 1=1) and attributename='Fish Type';" />
+</validator>
+</property>
+</ArchaeologicalElement>
+</ValidationSchema>
+
+
+
