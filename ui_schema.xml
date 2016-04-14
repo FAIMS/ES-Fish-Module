@@ -153,7 +153,7 @@
         <trigger ref="Fill_In_GPS" faims_style_class="faims-blue">
           <label>{Fill_In_GPS}</label>
         </trigger>
-        <select1 ref="Fish_Type" faims_attribute_name="Fish Type" faims_attribute_type="measure" type="image" faims_certainty="true" faims_annotation="true" faims_read_only="false">
+        <select1 ref="Fish_Type" faims_attribute_name="Fish Type" faims_attribute_type="vocab" type="image" faims_certainty="true" faims_annotation="true" faims_read_only="false">
           <label>{Fish_Type}</label>
           <item>
             <label>dummy</label>
