@@ -5,6 +5,8 @@
     <!--New props and modified old props-->
     <property name="Fish Type" type="enum" isIdentifier="true">
       <description>Description TBD</description>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
       <lookup>
         <term pictureURL="files/data/Mongrovejackjr.jpg"> {Mangrove_Jack}
           <description>Description TBD</description>
@@ -28,28 +30,40 @@
     </property>
     <property name="Author" type="freetext" isIdentifier="true">
       <description>Description TBD</description>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
     <property name="Timestamp" type="freetext" isIdentifier="true">
       <description>Description TBD</description>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
 
     <!--Old props-->
     <property name="Photos" type="file" file="true" thumbnail="true">
       <description>Description TBD</description>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
     <property name="Latitude" type="freetext">
       <description>Description TBD</description>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
     <property name="Longitude" type="freetext">
       <description>Description TBD</description>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
-    <property name="Size" type="enum">
+    <property name="Size" type="freetext">
       <description>Description TBD</description>
-      <lookup>
-      </lookup>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
     <property name="Sex" type="enum">
       <description>Description TBD</description>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
       <lookup>
         <term> {Male}
           <description>Description TBD</description>
@@ -64,12 +78,18 @@
     </property>
     <property name="Location" type="freetext">
       <description>Description TBD</description>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
     <property name="Depth" type="freetext">
       <description>Description TBD</description>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
     <property name="Weather Conditions" type="enum">
       <description>Description TBD</description>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
       <lookup>
         <term> {Sunny}
           <description>Description TBD</description>
@@ -90,6 +110,8 @@
     </property>
     <property name="Fishing Method" type="enum">
       <description>Description TBD</description>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
       <lookup>
         <term> {No_Observation}
           <description>Description TBD</description>
@@ -110,12 +132,18 @@
     </property>
     <property name="Number of Fishers in Party">
       <description>Description TBD</description>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
     <property name="Comments">
       <description>Description TBD</description>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
     <property name="Released?" type="enum">
       <description>Description TBD</description>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
       <lookup>
         <term> {Yes}
           <description>Description TBD</description>
@@ -127,6 +155,8 @@
     </property>
     <property name="Tag no" type="freetext">
       <description>Description TBD</description>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
   </ArchaeologicalElement>
 </dataSchema>
