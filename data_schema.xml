@@ -9,22 +9,23 @@
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
       <lookup>
         <term pictureURL="files/data/Mongrovejackjr.jpg"> {Mangrove_Jack}
-          <description>Description TBD</description>
+          <description>The Mangrove red snapper (commonly called mangrove jack within Australia), Lutjanus argentimaculatus is a species of snapper. It is also known as creek red bream, the Stuart evader, dog bream, mangrove red snapper, purple sea perch, purple sea-perch, red bass, red bream, red perch, red reef bream, river roman or rock barramundi.</description>
         </term>
         <term pictureURL="files/data/Carp.jpg"> {Carp}
-          <description>Description TBD</description>
+          <description>Carp are various species of oily freshwater fish from the family Cyprinidae, a very large group of fish native to Europe and Asia.</description>
         </term>
         <term pictureURL="files/data/Barramundi.jpg"> {Barramundi}
-          <description>Description TBD</description>
+          <description>The barramundi or Asian sea bass (Lates calcarifer) is a species of catadromous fish in family Latidae of order Perciformes. The species is widely distributed in the Indo-West Pacific region from the Persian Gulf, through Southeast Asia to Papua New Guinea and Northern Australia.</description>
         </term>
         <term pictureURL="files/data/Bass.jpg"> {Bass}
-          <description>Description TBD</description>
+          <description>Bass is a name shared by many different species of fish. The term encompasses both freshwater and marine species, all belonging to the large order Perciformes, or perch-like fishes, and the word bass comes from Middle English bars, meaning "perch". The black basses, such as the Choctaw bass (M. haiaka), Guadalupe bass (M. treculii), largemouth bass (Micropterus salmoides), smallmouth bass (M. dolomieu), and spotted bass (M. punctulatus), belong to the sunfish family, Centrarchidae.
+The temperate basses, such as the European seabass (Dicentrarchus labrax), striped bass (Morone saxatilis) and white bass (M. chrysops), belong to the family Moronidae. The Asian seabasses, such as the Japanese seabass (Lateolabrax japonicus) and Blackfin seabass (Lateolabrax latus), belong to the family Lateolabracidae.</description>
         </term>
         <term pictureURL="files/data/Perch.jpg"> {Perch}
-          <description>Description TBD</description>
+          <description>Perch is a common name for fish of the genus Perca, freshwater gamefish belonging to the family Percidae. The perch, of which there are three species in different geographical areas, lend their name to a large order of vertebrates: the Perciformes, from the Greek perke, simply meaning perch, and the Latin forma meaning shape. Many species of freshwater gamefish more or less resemble perch, but belong to different genera. In fact, the exclusively saltwater dwelling red drum is often referred to as a red perch, though by definition perch are freshwater fish. Though many fish are referred to as perch as a common name, to be considered a true perch, the fish must be of the family Percidae. The type species for this genus is the European perch, Perca fluviatilis.</description>
         </term>
         <term pictureURL="files/data/Garfish.jpg"> {Garfish}
-          <description>Description TBD</description>
+          <description>The garfish (Belone belone), or sea needle, is a pelagic, oceanodromous needlefish found in brackish and marine waters of the Atlantic, the Mediterranean Sea, Caribbean Sea and the Baltic Sea. The garfish is a long and slender fish with a laterally-compressed body, and grows to about 50 to 75 centimetres (20 to 30 in) in length. The jaws are elongated and armed with sharp teeth. The pectoral, dorsal and anal fins are situated well back on the body and the latter two are similar in appearance. Positioning the fins so far back gives greater flexibility to the body. The lateral line is set low on the flanks. The colour of the body is bluish green with a silvery grey belly and the bones are green.</description>
         </term>
       </lookup>
     </property>
@@ -77,39 +78,39 @@
       </lookup>
     </property>
     <property name="Location" type="freetext">
-      <description>Description TBD</description>
+      <description>Provide description of fishing location. Briefly describe the environment, quality of water and the fishing area feasibility.</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
     <property name="Depth" type="freetext">
-      <description>Description TBD</description>
+      <description>Depth in metres.</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
     <property name="Weather Conditions" type="enum">
-      <description>Description TBD</description>
+      <description>Weather conditions at the time of fishing.</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
       <lookup>
         <term> {Sunny}
-          <description>Description TBD</description>
+          <description>Sunshine.</description>
         </term>
         <term> {Cloudy}
-          <description>Description TBD</description>
+          <description>Cloud cover.</description>
         </term>
         <term> {Stormy}
-          <description>Description TBD</description>
+          <description>Heavy rain with lightnings.</description>
         </term>
         <term> {Rain}
-          <description>Description TBD</description>
+          <description>Light to medium rain.</description>
         </term>
         <term> {Lots_of_Rain}
-          <description>Description TBD</description>
+          <description>Heavy rain.</description>
         </term>
       </lookup>
     </property>
     <property name="Fishing Method" type="enum">
-      <description>Description TBD</description>
+      <description>Select appropriate method of fishing.</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
       <lookup>
@@ -117,31 +118,31 @@
           <description>Description TBD</description>
         </term>
         <term> {Bait}
-          <description>Description TBD</description>
+          <description>Fishing bait is any substance used to attract and catch fish, e.g. on the end of a fishing hook, or inside a fish trap. Traditionally, nightcrawlers, insects, and smaller bait fish have been used for this purpose. Fishermen have also begun using plastic bait and, more recently, electronic lures, to attract fish.</description>
         </term>
         <term> {Lure}
-          <description>Description TBD</description>
+          <description>A fishing lure is a type of artificial fishing bait which is designed to attract a fish's attention. The lure uses movement, vibration, flash and color to bait fish. Many lures are equipped with one or more hooks that are used to catch fish when they strike the lure. Some lures are placed to attract fish so a spear can be impaled into the fish or so the fish can be captured by hand. Most lures are attached to the end of a fishing line and have various styles of hooks attached to the body and are designed to elicit a strike resulting in a hookset. Many lures are commercially made but some are hand made such as fishing flies. Hand tying fly lures to match the hatch is considered a challenge by many amateur entomologists.</description>
         </term>
         <term> {Fly}
-          <description>Description TBD</description>
+          <description>Fly fishing is an angling method in which an artificial "fly" is used to catch fish. The fly is cast using a fly rod, reel, and specialized weighted line. Casting a nearly weightless fly or "lure" requires casting techniques significantly different from other forms of casting. Fly fishermen use hand tied flies that resemble natural invertebrates, baitfish, other food organisms, or "lures" to provoke the fish to strike (bite at the fly). Fly fishing can be done in fresh or salt water. North Americans usually distinguish freshwater fishing between cold-water species (trout, salmon, steelhead) and warm-water species, notably bass. In Britain, where natural water temperatures vary less, the distinction is between game fishing for trout and salmon versus coarse fishing for other species. Techniques for fly fishing differ with habitat (lakes and ponds, small streams, large rivers, bays and estuaries, and open ocean.)</description>
         </term>
         <term> {Net}
-          <description>Description TBD</description>
+          <description>A fishing net or fishnet is a net used for fishing. Nets are devices made from fibers woven in a grid-like structure. Fishing nets are usually meshes formed by knotting a relatively thin thread. Early nets were woven from grasses, flaxes and other fibrous plant material. Later cotton was used. Modern nets are usually made of artificial polyamides like nylon, although nets of organic polyamides such as wool or silk thread were common until recently and are still used.</description>
         </term>
       </lookup>
     </property>
     <property name="Number of Fishers in Party">
-      <description>Description TBD</description>
+      <description>How many people were fishing today in your group?</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
     <property name="Comments">
-      <description>Description TBD</description>
+      <description>Any comments on today's fishing?</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
     <property name="Released?" type="enum">
-      <description>Description TBD</description>
+      <description>Was the fish released?</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
       <lookup>
@@ -154,7 +155,7 @@
       </lookup>
     </property>
     <property name="Tag no" type="freetext">
-      <description>Description TBD</description>
+      <description>Was the released fish given a tag?</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
