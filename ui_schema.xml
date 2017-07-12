@@ -1,9 +1,11 @@
-<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<?xml version='1.0' encoding='utf-8'?>
+<h:html xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:jr="http://openrosa.org/javarosa" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
-    <h:title>Environmental Solutions Fish Module</h:title>
+    <h:title>FILL THIS IN</h:title>
     <model>
       <instance>
-        <faims>
+        <faims id="FILL_THIS_IN">
+          <!--START: Style-->
           <style>
             <orientation>
               <orientation/>
@@ -15,56 +17,83 @@
               <layout_weight/>
             </large>
           </style>
-          <user>
-            <usertab>
-              <users/>
-              <login/>
-            </usertab>
-          </user>
+          <!--END: Style-->
+          <Login>
+            <User_List>
+              <Users/>
+              <Log_in/>
+              <Signup_Guide_1/>
+              <Sign_up/>
+            </User_List>
+          </Login>
           <Control>
-            <Fish>
+            <Control>
               <New_Fish/>
-              <Fish_List/>
-            </Fish>
+              <List_of_Fish/>
+            </Control>
+            <Search>
+              <Colgroup_0>
+                <Col_0>
+                  <Search_Term/>
+                </Col_0>
+                <Col_1>
+                  <Search_Button/>
+                </Col_1>
+              </Colgroup_0>
+              <Entity_List/>
+            </Search>
           </Control>
           <Fish>
             <Fish>
-              <Author/>
-              <Timestamp/>
-              <Photos/>
+              <Fish_author/>
+              <Fish_timestamp/>
               <Attach_Photo/>
-              <container1>
-                <child1>
+              <Attach_Photo_Button_1/>
+              <Colgroup_1>
+                <Col_1>
                   <Latitude/>
-                </child1>
-                <child2>
+                </Col_1>
+                <Col_2>
                   <Longitude/>
-                </child2>
-              </container1>
-              <Fill_In_GPS/>
+                </Col_2>
+              </Colgroup_1>
+              <Colgroup_2>
+                <Col_1>
+                  <Northing/>
+                </Col_1>
+                <Col_2>
+                  <Easting/>
+                </Col_2>
+                <Col_3>
+                  <Accuracy/>
+                </Col_3>
+              </Colgroup_2>
+              <Take_From_GPS_1/>
               <Fish_Type/>
-              <Size/>
+              <Size_in_cm/>
               <Sex/>
               <Location/>
-              <Depth/>
+              <Depth_in_cm/>
               <Weather_Conditions/>
               <Fishing_Methods/>
-              <Number_of_Fishers/>
+              <Number_of_Fishers_in_Party/>
               <Comments/>
               <Released/>
-              <Tag_No/>
+              <Tag_no/>
             </Fish>
           </Fish>
         </faims>
       </instance>
-      <bind nodeset="/faims/Fish/Fish/container1/child1/Latitude" type="decimal"/>
-      <bind nodeset="/faims/Fish/Fish/container1/child2/Longitude" type="decimal"/>
-      <bind nodeset="/faims/Fish/Fish/Size" type="decimal"/>
-      <bind nodeset="/faims/Fish/Fish/Depth" type="decimal"/>
-      <bind nodeset="/faims/Fish/Fish/Number_of_Fishers" type="decimal"/>
+      <bind nodeset="/faims/Fish/Fish/Size_in_cm" type="decimal"/>
+      <bind nodeset="/faims/Fish/Fish/Location" type="string"/>
+      <bind nodeset="/faims/Fish/Fish/Depth_in_cm" type="decimal"/>
+      <bind nodeset="/faims/Fish/Fish/Number_of_Fishers_in_Party" type="decimal"/>
+      <bind nodeset="/faims/Fish/Fish/Comments" type="string"/>
+      <bind nodeset="/faims/Fish/Fish/Tag_no" type="string"/>
     </model>
   </h:head>
   <h:body>
+    <!--START: Style-->
     <group ref="style">
       <label/>
       <group ref="orientation">
@@ -86,31 +115,66 @@
         </input>
       </group>
     </group>
-    <group ref="user">
-      <label>{User_List}</label>
-      <group ref="usertab" faims_scrollable="false">
+    <!--END: Style-->
+    <group ref="Login">
+      <label>{Login}</label>
+      <group ref="User_List">
         <label>{User_List}</label>
-        <select1 appearance="compact" ref="users">
-          <label>{Users}:</label>
+        <select1 ref="Users">
+          <label>{Users}</label>
           <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
+            <label>Options not loaded</label>
+            <value>Options not loaded</value>
           </item>
         </select1>
+        <trigger ref="Log_in">
+          <label>{Log_in}</label>
+        </trigger>
+        <input faims_web="true" ref="Signup_Guide_1">
+          <label/>
+        </input>
+        <trigger ref="Sign_up">
+          <label>{Sign_up}</label>
+        </trigger>
       </group>
     </group>
     <group ref="Control">
       <label>{Control}</label>
-      <group ref="Fish" faims_scrollable="false">
-        <label>{Fish}</label>
-        <trigger ref="New_Fish" faims_style_class="faims-blue">
+      <group ref="Control" faims_scrollable="false">
+        <label>{Control}</label>
+        <trigger ref="New_Fish">
           <label>{New_Fish}</label>
         </trigger>
-        <select1 appearance="compact" ref="Fish_List" faims_certainty="true" faims_annotation="true" faims_read_only="false" >
-          <label>{Fish_List}</label>
+        <select1 appearance="compact" ref="List_of_Fish">
+          <label>{List_of_Fish}</label>
           <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
+            <label>Options not loaded</label>
+            <value>Options not loaded</value>
+          </item>
+        </select1>
+      </group>
+      <group ref="Search" faims_scrollable="false">
+        <label>{Search}</label>
+        <group ref="Colgroup_0" faims_style="orientation">
+          <label/>
+          <group ref="Col_0" faims_style="even">
+            <label/>
+            <input ref="Search_Term">
+              <label>{Search_Term}</label>
+            </input>
+          </group>
+          <group ref="Col_1" faims_style="large">
+            <label/>
+            <trigger ref="Search_Button">
+              <label>{Search}</label>
+            </trigger>
+          </group>
+        </group>
+        <select1 appearance="compact" ref="Entity_List">
+          <label>{Entity_List}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>Options not loaded</value>
           </item>
         </select1>
       </group>
@@ -119,92 +183,113 @@
       <label>{Fish}</label>
       <group ref="Fish">
         <label>{Fish}</label>
-        <input ref="Author" faims_attribute_name="Author" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="true">
+        <input faims_attribute_name="Fish author" faims_attribute_type="measure" ref="Fish_author" faims_read_only="true">
           <label>{Author}</label>
         </input>
-        <input ref="Timestamp" faims_attribute_name="Timestamp" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="true">
+        <input faims_attribute_name="Fish timestamp" faims_attribute_type="measure" ref="Fish_timestamp" faims_read_only="true">
           <label>{Timestamp}</label>
         </input>
-        <select type="camera" faims_sync="true" ref="Photos" faims_attribute_name="Photos" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
-          <label>{Photos}</label>
+        <select faims_sync="true" type="camera" faims_attribute_name="Attach Photo" faims_attribute_type="measure" ref="Attach_Photo">
+          <label>{Attach_Photo}</label>
           <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
+            <label>Options not loaded</label>
+            <value>Options not loaded</value>
           </item>
         </select>
-        <trigger ref="Attach_Photo" faims_style_class="faims-blue">
+        <trigger ref="Attach_Photo_Button_1">
           <label>{Attach_Photo}</label>
         </trigger>
-        <group ref="container1" faims_style="orientation">
+        <group ref="Colgroup_1" faims_style="orientation">
           <label/>
-          <group ref="child1" faims_style="even">
+          <group ref="Col_1" faims_style="even">
             <label/>
-            <input ref="Latitude" faims_attribute_name="Latitude" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
+            <input faims_attribute_name="Latitude" faims_attribute_type="measure" ref="Latitude" faims_read_only="true">
               <label>{Latitude}</label>
             </input>
           </group>
-          <group ref="child2" faims_style="even">
+          <group ref="Col_2" faims_style="even">
             <label/>
-            <input ref="Longitude" faims_attribute_name="Longitude" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
+            <input faims_attribute_name="Longitude" faims_attribute_type="measure" ref="Longitude" faims_read_only="true">
               <label>{Longitude}</label>
             </input>
           </group>
         </group>
-        <trigger ref="Fill_In_GPS" faims_style_class="faims-blue">
-          <label>{Fill_In_GPS}</label>
+        <group ref="Colgroup_2" faims_style="orientation">
+          <label/>
+          <group ref="Col_1" faims_style="even">
+            <label/>
+            <input faims_attribute_name="Northing" faims_attribute_type="measure" ref="Northing" faims_read_only="true">
+              <label>{Northing}</label>
+            </input>
+          </group>
+          <group ref="Col_2" faims_style="even">
+            <label/>
+            <input faims_attribute_name="Easting" faims_attribute_type="measure" ref="Easting" faims_read_only="true">
+              <label>{Easting}</label>
+            </input>
+          </group>
+          <group ref="Col_3" faims_style="even">
+            <label/>
+            <input faims_attribute_name="Accuracy" faims_attribute_type="measure" ref="Accuracy" faims_read_only="true">
+              <label>{Accuracy}</label>
+            </input>
+          </group>
+        </group>
+        <trigger ref="Take_From_GPS_1">
+          <label>{Take_From_GPS}</label>
         </trigger>
-        <select1 ref="Fish_Type" faims_attribute_name="Fish Type" faims_attribute_type="vocab" type="image" faims_certainty="true" faims_annotation="true" faims_read_only="false">
+        <select1 type="image" faims_attribute_name="Fish Type" faims_attribute_type="vocab" ref="Fish_Type">
           <label>{Fish_Type}</label>
           <item>
-            <label>dummy</label>
-            <value>dummy</value>
+            <label>Options not loaded</label>
+            <value>Options not loaded</value>
           </item>
         </select1>
-        <input ref="Size" faims_attribute_name="Size" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
-          <label>{Size}</label>
+        <input faims_attribute_name="Size in cm" faims_attribute_type="measure" ref="Size_in_cm" faims_style_class="required">
+          <label>{Size__cm_}</label>
         </input>
-        <select1 appearance="full" ref="Sex" faims_attribute_name="Sex" faims_attribute_type="vocab" faims_certainty="true" faims_annotation="true" faims_read_only="false">
+        <select1 appearance="full" faims_attribute_name="Sex" faims_attribute_type="vocab" ref="Sex">
           <label>{Sex}</label>
           <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
+            <label>Options not loaded</label>
+            <value>Options not loaded</value>
           </item>
         </select1>
-        <input ref="Location" faims_attribute_name="Location" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
+        <input faims_attribute_name="Location" faims_attribute_type="measure" ref="Location">
           <label>{Location}</label>
         </input>
-        <input ref="Depth" faims_attribute_name="Depth" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
-          <label>{Depth}</label>
+        <input faims_attribute_name="Depth in cm" faims_attribute_type="measure" ref="Depth_in_cm">
+          <label>{Depth__cm_}</label>
         </input>
-        <select ref="Weather_Conditions" faims_attribute_name="Weather Conditions" faims_attribute_type="vocab" faims_certainty="true" faims_annotation="true" faims_read_only="false">
+        <select faims_attribute_name="Weather Conditions" faims_attribute_type="vocab" ref="Weather_Conditions">
           <label>{Weather_Conditions}</label>
           <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
+            <label>Options not loaded</label>
+            <value>Options not loaded</value>
           </item>
         </select>
-        <select1 ref="Fishing_Methods" faims_attribute_name="Fishing Method" faims_attribute_type="vocab" faims_certainty="true" faims_annotation="true" faims_read_only="false">
+        <select1 faims_attribute_name="Fishing Methods" faims_attribute_type="vocab" ref="Fishing_Methods">
           <label>{Fishing_Methods}</label>
           <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
+            <label>Options not loaded</label>
+            <value>Options not loaded</value>
           </item>
         </select1>
-        <input ref="Number_of_Fishers" faims_attribute_name="Number of Fishers in Party" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
-          <label>{Number_of_Fishers}</label>
+        <input faims_attribute_name="Number of Fishers in Party" faims_attribute_type="measure" ref="Number_of_Fishers_in_Party">
+          <label>{Number_of_Fishers_in_Party}</label>
         </input>
-        <input ref="Comments" faims_attribute_name="Comments" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
+        <input faims_attribute_name="Comments" faims_attribute_type="measure" ref="Comments">
           <label>{Comments}</label>
         </input>
-        <select1 appearance="full" ref="Released" faims_attribute_name="Released?" faims_attribute_type="vocab" faims_certainty="true" faims_annotation="true" faims_read_only="false">
-          <label>{Released}</label>
+        <select1 appearance="full" faims_attribute_name="Released" faims_attribute_type="vocab" ref="Released">
+          <label>{Released_}</label>
           <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
+            <label>Options not loaded</label>
+            <value>Options not loaded</value>
           </item>
         </select1>
-        <input ref="Tag_No" faims_attribute_name="Tag no" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
-          <label>{Tag_No}</label>
+        <input faims_attribute_name="Tag no" faims_attribute_type="measure" ref="Tag_no">
+          <label>{Tag_no__if_released_}</label>
         </input>
       </group>
     </group>
