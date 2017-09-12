@@ -37,3 +37,29 @@ This module is part of the **FAIMS Demo library** on our publicly accessible Dem
 For more details about the **Fish module**, please contact petra@fedarch.org.
 
 If you have any questions about the module, please contact the FAIMS team at **enquiries@fedarch.org** and we will get back to you within one business day.
+
+## Screenshots:
+
+<p align="left">
+  <img src="https://github.com/FAIMS/ES-Fish-Module/blob/master/screenshots/Screenshot_20170912-111819.png" width="250"/>
+  <img src="https://github.com/FAIMS/ES-Fish-Module/blob/master/screenshots/Screenshot_20170912-112332.png" width="250"/>
+  <img src="https://github.com/FAIMS/ES-Fish-Module/blob/master/screenshots/Screenshot_20170912-112411.png" width="250"/>
+</p>
+
+<p align="left">
+  <img src="https://github.com/FAIMS/ES-Fish-Module/blob/master/screenshots/Screenshot_20170912-112435.png" width="250"/>
+  <img src="https://github.com/FAIMS/ES-Fish-Module/blob/master/screenshots/Screenshot_20170912-112557.png" width="250"/>
+  <img src="https://github.com/FAIMS/ES-Fish-Module/blob/master/screenshots/Screenshot_20170912-112613.png" width="250"/>
+</p>
+
+<p align="left">
+  <img src="https://github.com/FAIMS/ES-Fish-Module/blob/master/screenshots/Screenshot_20170912-112623.png" width="250"/>
+  <img src="https://github.com/FAIMS/ES-Fish-Module/blob/master/screenshots/Screenshot_20170912-112639.png" width="250"/>
+  <img src="https://github.com/FAIMS/ES-Fish-Module/blob/master/screenshots/Screenshot_20170912-112720.png" width="250"/>
+</p>
+
+<p align="left">
+  <img src="https://github.com/FAIMS/ES-Fish-Module/blob/master/screenshots/Screenshot_20170912-112742.png" width="250"/>
+  <img src="https://github.com/FAIMS/ES-Fish-Module/blob/master/screenshots/Screenshot_20170912-112748.png" width="250"/>
+  <img src="https://github.com/FAIMS/ES-Fish-Module/blob/master/screenshots/Screenshot_20170912-112810.png" width="250"/>
+</p>
