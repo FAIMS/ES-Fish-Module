@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ValidationSchema>
+  <ArchaeologicalElement name="Fish">
+    <property name="Size in cm">
+          <validator type="querychecker">
+            <query><![CDATA[select coalesce(?,'') between 20 and 100, 'Size must be between 20.0 cm and 100.0 cm']]></query>
+            <param type="field" value="measure" />
+          </validator>
+    </property>
+  </ArchaeologicalElement>
+</ValidationSchema>
